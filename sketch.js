@@ -19,9 +19,81 @@ function setup() {
 }
 
 function draw() {
-  // testLines()
-  // outlineShape()
+
+  testLines()
+  outlineShape()
   simpleLines()
+  circles()
+
+  let picker = random(1)
+  if(picker > 0.3) {
+    outlineShape
+  }
+
+  picker = random(1)
+  if(picker > 0.3){
+    simpleLines()
+  }
+
+  picker = random(1)
+  if(picker > 0.3){
+    circles()
+  }
+}
+
+function circles () {
+  const numShapes = SIDES
+  const angle = 360 / numShapes
+  const shapeSize = (CRYSTAL_SIZE / 2) * 0.93
+  const position = (CRYSTAL_SIZE / 2) - (shapeSize / 2)
+  const strokeColor = getRandFromPalette()
+
+  noFill()
+  stroke(strokeColor)
+  strokeWeight(1)
+  push()
+  translate(width/2, height/2)
+  for(let i = 0; i <= numShapes; i++) {
+    ellipse(position, 0, shapeSize, shapeSize)
+    rotate(angle)
+  }
+  pop()
+}
+
+function outlineShape () {
+  const strokeColor = getRandFromPalette()
+  const weight = randSelectOfTwo() ? 1 : 3
+  const hexagonTrue = randSelectOfTwo()
+
+  stroke(strokeColor)
+  strokeWeight(weight)
+  push()
+  translate(width/2, height/2)
+  if (hexagonTrue) {
+    hexagon(0, 0, CRYSTAL_SIZE / 2)
+  } else {
+    ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)
+  }
+  pop()
+}
+
+function testLines() {
+  let numShapes = randSelectOfTwo() ? SIDES : SIDES * 2;
+  const strokeColor = getRandFromPalette()
+
+  noFill(0)
+  stroke(PALETTE[1])
+  push()
+    translate(width/2, height/2)
+    ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)
+
+    stroke(strokeColor)
+    const angle = 360 / numShapes
+    for(let i = 0; i < numShapes; i++) {
+      line(0, 0, 0, CRYSTAL_SIZE/2)
+      rotate(angle)
+    }
+  pop()
 }
 
 function simpleLines() {
@@ -51,41 +123,8 @@ const stop = floor(random(start, numSteps + 1))
 }
 
 
-function outlineShape () {
-  const strokeColor = getRandFromPalette()
-  const weight = randSelectOfTwo() ? 1 : 3
-  const hexagonTrue = randSelectOfTwo()
-
-  stroke(strokeColor)
-  strokeWeight(weight)
-  push()
-  translate(width/2, height/2)
-  if (hexagonTrue) {
-    hexagon(0, 0, CRYSTAL_SIZE / 2)
-  } else {
-    ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)
-  }
-  pop()
-}
 
 
-function testLines() {
-  let numShapes = randSelectOfTwo() ? SIDES : SIDES * 2;
-  const strokeColor = getRandFromPalette()
 
-  noFill(0)
-  stroke(PALETTE[1])
-  push()
-    translate(width/2, height/2)
-    ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)
-
-    stroke(strokeColor)
-    const angle = 360 / numShapes
-    for(let i = 0; i < numShapes; i++) {
-      line(0, 0, 0, CRYSTAL_SIZE/2)
-      rotate(angle)
-    }
-  pop()
-}
 
 
