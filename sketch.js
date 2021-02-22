@@ -20,45 +20,32 @@ function setup() {
 
 function draw() {
 
-  testLines()
-  outlineShape()
-  simpleLines()
-  circles()
+  // const crystal = new Circles()
+  // crystal.render()
 
-  let picker = random(1)
-  if(picker > 0.3) {
-    outlineShape
-  }
+  const simpleLines = new SimpleLines()
+  console.log(simpleLines);
+  // testLines()
+  // outlineShape()
+  // simpleLines()
+  // circles()
 
-  picker = random(1)
-  if(picker > 0.3){
-    simpleLines()
-  }
+  // let picker = random(1)
+  // if(picker > 0.3) {
+  //   outlineShape
+  // }
 
-  picker = random(1)
-  if(picker > 0.3){
-    circles()
-  }
+  // picker = random(1)
+  // if(picker > 0.3){
+  //   simpleLines()
+  // }
+
+  // picker = random(1)
+  // if(picker > 0.3){
+  //   circles()
+  // }
 }
 
-function circles () {
-  const numShapes = SIDES
-  const angle = 360 / numShapes
-  const shapeSize = (CRYSTAL_SIZE / 2) * 0.93
-  const position = (CRYSTAL_SIZE / 2) - (shapeSize / 2)
-  const strokeColor = getRandFromPalette()
-
-  noFill()
-  stroke(strokeColor)
-  strokeWeight(1)
-  push()
-  translate(width/2, height/2)
-  for(let i = 0; i <= numShapes; i++) {
-    ellipse(position, 0, shapeSize, shapeSize)
-    rotate(angle)
-  }
-  pop()
-}
 
 function outlineShape () {
   const strokeColor = getRandFromPalette()
