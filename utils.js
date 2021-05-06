@@ -14,7 +14,7 @@ function pointOnCircle (posX, posY, radius, angle) {
   return createVector(x, y)
 }
 
-function randSelectOfTwo () {
+function randomSelectTwo () {
   const rando = random(1)
   let numShapes
   if (rando > 0.5) {
@@ -28,3 +28,82 @@ function getRandFromPalette () {
   const rando = floor(random(0, PALETTE.length))
   return PALETTE[rando]
 }
+
+
+function testLines() {
+  let numShapes = randomSelectTwo() ? SIDES : SIDES * 2;
+  const strokeColor = getRandFromPalette()
+
+  noFill(0)
+  stroke(PALETTE[1])
+  push()
+    translate(width/2, height/2)
+    ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)
+
+    stroke(strokeColor)
+    const angle = 360 / numShapes
+    for(let i = 0; i < numShapes; i++) {
+      line(0, 0, 0, CRYSTAL_SIZE/2)
+      rotate(angle)
+    }
+  pop()
+}
+
+function myTriangle (center, radius, direction) {
+  if (direction) {
+    beginShape();
+    vertex(center + radius * cos(0), radius * sin(0));
+    vertex(center + radius * cos(120), radius * sin(120));
+    vertex(center + radius * cos(240), radius * sin(240));
+    endShape(CLOSE); 
+  } else {
+    beginShape();
+    vertex(center + radius * cos(180), radius * sin(180));
+    vertex(center + radius * cos(300), radius * sin(300));
+    vertex(center + radius * cos(60), radius * sin(60));
+    endShape(CLOSE);
+  }
+}
+
+const layerConstructors = [
+  {
+    name: 'Outline Shape',
+    init: () => new OutlineShape(),
+    weight: 0.3
+  },
+  {
+    name: 'Centered Shape',
+    init: () => new CenteredShape(),
+    weight: 0.3
+  },
+  {
+    name: 'Circles',
+    init: () => new Circles(),
+    weight: 0.3
+  },
+  {
+    name: 'Simple Lines',
+    init: () => new SimpleLines(),
+    weight: 0.3
+  },
+  {
+    name: 'Dotted Lines',
+    init: () => new DottedLines(),
+    weight: 0.3
+  },
+  {
+    name: 'Ring of Shapes',
+    init: () => new RingOfShapes(),
+    weight: 0.3
+  },
+  {
+    name: 'Stepped Hexagons',
+    init: () => new SteppedHexagons(),
+    weight: 0.3
+  },
+  {
+    name: 'Test Lines',
+    init: () => new OutlineShape(),
+    weight: 0.3
+  }
+]
